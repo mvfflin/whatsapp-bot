@@ -10,7 +10,8 @@
     "venom-bot": "^5.0.20"
   },
   "scripts": {
-    "test": "nodemon src/index.ts"
+    "test": "nodemon src/index.ts",
+    "build": "tsc"
   },
   "devDependencies": {
     "nodemon": "^3.0.1",
