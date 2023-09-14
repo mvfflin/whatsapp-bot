@@ -1,4 +1,4 @@
-import { writeFileSync, unlinkSync } from "fs";
+import { writeFileSync, unlinkSync, existsSync, mkdirSync } from "fs";
 import { Message, Whatsapp, MessageType } from "venom-bot";
 
 const saveMedia = async (msg: Message, client: Whatsapp) => {
@@ -14,6 +14,9 @@ const saveMedia = async (msg: Message, client: Whatsapp) => {
   }
 
   const buffer = await client.decryptFile(quotedMsg);
+  if (!existsSync(`${__dirname}/../../temp/`)) {
+    mkdirSync(`${__dirname}/../../temp/`);
+  }
   writeFileSync(`${__dirname}/../../temp/save-media-${randomInt}.png`, buffer);
   await client.sendImage(
     msg.chatId,
